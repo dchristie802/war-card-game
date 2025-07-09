@@ -20,6 +20,7 @@ export class Deck implements IDeck {
 
   constructor() {
     this.initializeDeck();
+    this.shuffle();
   }
 
   private initializeDeck = (): void => {
@@ -52,6 +53,11 @@ export class Deck implements IDeck {
   }
 
   shuffle(): void {
-    // TODO: Shuffle the deck
+    for (let i = 0; i <= this.cards.length - 1; i++){
+      const card = this.cards[i];
+      const newIndex = Math.floor(Math.random() * 52);
+      this.cards.splice(i, 1);
+      this.cards.splice(newIndex, 0, card);
+    }
   }
 }

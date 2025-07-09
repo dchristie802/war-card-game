@@ -5,4 +5,15 @@ describe('Deck', () => {
     const deck = new Deck();
     expect(deck.cards).toHaveLength(52);
   });
+
+  it('should shuffle the deck', () => {
+    const deck = new Deck();
+    const cardsBefore = deck.cards.flatMap((card) => card.rank + card.suite).join();
+    expect(deck.cards).toHaveLength(52);
+
+    deck.shuffle();
+    const cardsAfter = deck.cards.flatMap((card) => card.rank + card.suite).join();
+    expect(cardsBefore).not.toBe(cardsAfter);
+    expect(deck.cards).toHaveLength(52);
+  })
 });
