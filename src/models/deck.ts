@@ -22,7 +22,7 @@ export class Deck implements IDeck {
     this.initializeDeck();
   }
 
-  private initializeDeck = (): Array<ICard> => {
+  private initializeDeck = (): void => {
     const suites: Array<cardSuites> = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
     const ranks: Array<cardRanks> = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
     const newDeck: Array<ICard> = []
@@ -33,7 +33,7 @@ export class Deck implements IDeck {
       }
     }
 
-    return newDeck
+    this.cards = newDeck;
   }
 
   addCard(): void {
