@@ -1,4 +1,5 @@
-import { Deck } from "./deck";
+import { Card } from "../Card";
+import { Deck } from "../Deck";
 
 describe('Deck', () => {
   it('should initialize with 52 cards', () => {
@@ -6,7 +7,18 @@ describe('Deck', () => {
     expect(deck.cards).toHaveLength(52);
   });
 
-  it('should shuffle the deck', () => {
+  it('should add a card', () => {
+    const deck = new Deck();
+    const card = Card.create({
+      rank: 'Ace',
+      suite: 'Spades'
+    });
+    deck.addCard(card);
+
+    expect(deck.cards).toHaveLength(53);
+  });
+
+  it('should shuffle', () => {
     const deck = new Deck();
     const cardsBefore = deck.cards.flatMap((card) => card.rank + card.suite).join();
     expect(deck.cards).toHaveLength(52);
@@ -15,5 +27,5 @@ describe('Deck', () => {
     const cardsAfter = deck.cards.flatMap((card) => card.rank + card.suite).join();
     expect(cardsBefore).not.toBe(cardsAfter);
     expect(deck.cards).toHaveLength(52);
-  })
+  });
 });
