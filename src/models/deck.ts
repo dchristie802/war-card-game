@@ -30,8 +30,8 @@ export class Deck implements IDeck {
     this.cards = newDeck;
   }
 
-  addCard(): void {
-    // TODO: Add card back into the deck
+  addCard(card: ICard): void {
+    this.cards.push(card);
   }
 
   deal(numCards: number): Array<ICard> {
