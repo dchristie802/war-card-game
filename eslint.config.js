@@ -1,23 +1,31 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y';
+import eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintPluginReact from 'eslint-plugin-react';
 
-export default tseslint.config([
-  globalIgnores(['dist']),
+export default [
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      js.configs.recommended,
-      tseslint.configs.recommended,
-      reactHooks.configs['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
+    files: ['**/*.js', '**/*.jsx'],
     languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
+      ecmaVersion: 'latest',
+      sourceType: 'module',
+      globals: {
+        browser: true,
+        node: true
+      }
     },
-  },
-])
+    plugins: {
+      react: eslintPluginReact,
+      'jsx-a11y': eslintPluginJsxA11y,
+      import: eslintPluginImport,
+      prettier: eslintPluginPrettier
+    },
+    extends: ['airbnb', 'airbnb/hooks', 'plugin:prettier/recommended'],
+    rules: {
+      // Add or override specific rules as needed
+      'prettier/prettier': 'error', // Enforce Prettier formatting as an ESLint rule
+      'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }]
+      // ... other custom rules
+    }
+  }
+];
