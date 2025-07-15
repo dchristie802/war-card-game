@@ -32,4 +32,13 @@ describe('Deck', () => {
     expect(cardsBefore).not.toBe(cardsAfter);
     expect(deck.cards).toHaveLength(52);
   });
+
+  it('should deal n number of cards', () => {
+    const deck = new Deck();
+    const cardsToDeal = Math.floor(Math.random() * 52);
+    const hand = deck.deal(cardsToDeal);
+
+    expect(hand).toHaveLength(cardsToDeal);
+    expect(deck.cards).toHaveLength(52 - cardsToDeal);
+  });
 });

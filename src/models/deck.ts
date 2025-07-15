@@ -3,7 +3,7 @@ import { Card, type ICard, type Rank, type Suite } from './Card';
 export interface IDeck {
   cards: Array<ICard>;
   addCard: (card: ICard) => void;
-  // deal: (numCards: number) => Array<ICard>;
+  deal: (numCards: number) => Array<ICard>;
   // dealOne: () => ICard | undefined;
   shuffle: () => void;
 }
@@ -53,13 +53,11 @@ export class Deck implements IDeck {
     this.cards.push(card);
   }
 
-  // TODO: Deal the number of cards provided from the top of the deck
-  // deal(numCards: number): Array<ICard> {
-  //   console.log({
-  //     numCards,
-  //   });
-  //   return [];
-  // }
+  deal(numCards: number): Array<ICard> {
+    const hand = this.cards.slice(0, numCards);
+    this.cards = this.cards.slice(numCards);
+    return hand;
+  }
 
   // TODO: Deal one card from the top of the deck
   // dealOne(): ICard | undefined {
