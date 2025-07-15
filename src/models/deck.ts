@@ -1,10 +1,10 @@
-import { Card, ICard, Rank, Suite } from "./Card";
+import { Card, type ICard, type Rank, type Suite } from './Card';
 
 export interface IDeck {
-  cards: Array<ICard>,
+  cards: Array<ICard>;
   addCard: (card: ICard) => void;
-  deal: (numCards: number) => Array<ICard>;
-  dealOne: () => ICard | undefined;
+  // deal: (numCards: number) => Array<ICard>;
+  // dealOne: () => ICard | undefined;
   shuffle: () => void;
 }
 
@@ -18,35 +18,58 @@ export class Deck implements IDeck {
 
   private initializeDeck = (): void => {
     const suites: Array<Suite> = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-    const ranks: Array<Rank> = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-    const newDeck: Array<ICard> = []
+    const ranks: Array<Rank> = [
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      'Jack',
+      'Queen',
+      'King',
+      'Ace',
+    ];
+    const newDeck: Array<ICard> = [];
 
-    for (const suite of suites) {
-      for (const rank of ranks) {
-        newDeck.push(Card.create({ suite, rank }));
+    for (let i = 0; i <= suites.length - 1; i++) {
+      for (let j = 0; j <= ranks.length - 1; j++) {
+        newDeck.push(
+          Card.create({
+            suite: suites[i],
+            rank: ranks[j],
+          })
+        );
       }
     }
 
     this.cards = newDeck;
-  }
+  };
 
   addCard(card: ICard): void {
     this.cards.push(card);
   }
 
-  deal(numCards: number): Array<ICard> {
-    // TODO: Deal the number of cards provided from the top of the deck
-    console.log({ numCards })
-    return []
-  }
+  // TODO: Deal the number of cards provided from the top of the deck
+  // deal(numCards: number): Array<ICard> {
+  //   console.log({
+  //     numCards,
+  //   });
+  //   return [];
+  // }
 
-  dealOne(): ICard | undefined {
-    // TODO: Deal one card from the top of the deck
-    return {suite: 'Clubs', rank: '10'}
-  }
+  // TODO: Deal one card from the top of the deck
+  // dealOne(): ICard | undefined {
+  //   return {
+  //     suite: 'Clubs', rank: '10',
+  //   };
+  // }
 
   shuffle(): void {
-    for (let i = 0; i <= this.cards.length - 1; i++){
+    for (let i = 0; i <= this.cards.length - 1; i++) {
       const card = this.cards[i];
       const newIndex = Math.floor(Math.random() * 52);
       this.cards.splice(i, 1);
