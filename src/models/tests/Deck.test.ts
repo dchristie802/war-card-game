@@ -41,4 +41,14 @@ describe('Deck', () => {
     expect(hand).toHaveLength(cardsToDeal);
     expect(deck.cards).toHaveLength(52 - cardsToDeal);
   });
+
+  it('should deal one card', () => {
+    const deck = new Deck();
+    const expectedCard = deck.cards[0];
+    const card = deck.dealOne();
+
+    expect(expectedCard.rank).toEqual(card.rank);
+    expect(expectedCard.suite).toEqual(card.suite);
+    expect(deck.cards).toHaveLength(51);
+  });
 });

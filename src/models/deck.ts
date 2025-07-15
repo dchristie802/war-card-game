@@ -4,7 +4,7 @@ export interface IDeck {
   cards: Array<ICard>;
   addCard: (card: ICard) => void;
   deal: (numCards: number) => Array<ICard>;
-  // dealOne: () => ICard | undefined;
+  dealOne: () => ICard;
   shuffle: () => void;
 }
 
@@ -59,12 +59,11 @@ export class Deck implements IDeck {
     return hand;
   }
 
-  // TODO: Deal one card from the top of the deck
-  // dealOne(): ICard | undefined {
-  //   return {
-  //     suite: 'Clubs', rank: '10',
-  //   };
-  // }
+  dealOne(): ICard {
+    const card = this.cards[0];
+    this.cards.shift();
+    return card;
+  }
 
   shuffle(): void {
     for (let i = 0; i <= this.cards.length - 1; i++) {
