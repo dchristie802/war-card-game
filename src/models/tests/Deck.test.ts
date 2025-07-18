@@ -11,7 +11,7 @@ describe('Deck', () => {
     const deck = new Deck();
     const card = Card.create({
       rank: 'Ace',
-      suite: 'Spades',
+      suit: 'Spades',
     });
 
     deck.addCard(card);
@@ -21,13 +21,13 @@ describe('Deck', () => {
   it('should shuffle', () => {
     const deck = new Deck();
     const cardsBefore = deck.cards
-      .flatMap((card) => card.rank + card.suite)
+      .flatMap((card) => card.rank + card.suit)
       .join();
     expect(deck.cards).toHaveLength(52);
 
     deck.shuffle();
     const cardsAfter = deck.cards
-      .flatMap((card) => card.rank + card.suite)
+      .flatMap((card) => card.rank + card.suit)
       .join();
     expect(cardsBefore).not.toBe(cardsAfter);
     expect(deck.cards).toHaveLength(52);
@@ -48,7 +48,7 @@ describe('Deck', () => {
     const card = deck.dealOne();
 
     expect(expectedCard.rank).toEqual(card.rank);
-    expect(expectedCard.suite).toEqual(card.suite);
+    expect(expectedCard.suit).toEqual(card.suit);
     expect(deck.cards).toHaveLength(51);
   });
 });

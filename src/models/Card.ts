@@ -1,4 +1,4 @@
-export type Suite = 'Clubs' | 'Diamonds' | 'Hearts' | 'Spades' | 'Unknown';
+export type Suit = 'Clubs' | 'Diamonds' | 'Hearts' | 'Spades' | 'Unknown';
 export type Rank =
   | '2'
   | '3'
@@ -16,14 +16,14 @@ export type Rank =
   | 'Unknown';
 
 export interface ICard {
-  suite: Suite;
+  suit: Suit;
   rank: Rank;
   value: number;
 }
 
 const create = (card?: Partial<ICard>): ICard => ({
   rank: card?.rank ?? 'Unknown',
-  suite: card?.suite ?? 'Unknown',
+  suit: card?.suit ?? 'Unknown',
   value: getRankWeight(card?.rank ?? 'Unknown'),
 });
 

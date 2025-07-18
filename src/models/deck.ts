@@ -1,4 +1,4 @@
-import { Card, type ICard, type Rank, type Suite } from './Card';
+import { Card, type ICard, type Rank, type Suit } from './Card';
 
 export interface IDeck {
   cards: Array<ICard>;
@@ -17,7 +17,7 @@ export class Deck implements IDeck {
   }
 
   private initializeDeck = (): void => {
-    const suites: Array<Suite> = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+    const suits: Array<Suit> = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
     const ranks: Array<Rank> = [
       '2',
       '3',
@@ -35,11 +35,11 @@ export class Deck implements IDeck {
     ];
     const newDeck: Array<ICard> = [];
 
-    for (let i = 0; i <= suites.length - 1; i++) {
+    for (let i = 0; i <= suits.length - 1; i++) {
       for (let j = 0; j <= ranks.length - 1; j++) {
         newDeck.push(
           Card.create({
-            suite: suites[i],
+            suit: suits[i],
             rank: ranks[j],
           })
         );
